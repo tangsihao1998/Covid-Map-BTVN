@@ -8,6 +8,13 @@ export default initialState => (state = initialState, action) => {
           ...payload.patientData
         },
       };
+    case 'GET_CURRENT_ALL_PATIENT_DATA':
+      return {
+        ...state,
+        currentPatientData: {
+          ...payload.currentPatientData
+        },
+      };
     case 'TAKE_CURRENT_PATIENT':
       return {
         ...state,
@@ -21,6 +28,11 @@ export default initialState => (state = initialState, action) => {
         patientData: {
           ...payload.newPatientData
         },
+      }
+    case 'GET_SELECT_DATE':
+      return {
+        ...state,
+        dateSelect: payload.dateSelect,
       }
     default:
       return state;

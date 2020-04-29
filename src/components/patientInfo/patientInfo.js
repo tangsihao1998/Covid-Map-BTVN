@@ -4,9 +4,10 @@ import './patientInfo.scss'
 class patientInfo extends Component {
 
   render() {
-    const {patient, setBold} = this.props;
+    const {patient} = this.props;
     return (
-      <div className={`patient${(setBold && '--bold' )||''} `}>
+      <div className={patient}>
+      {/* {`patient${(setBold && '--bold' )||''} `}> */}
         <div>+ Name: {patient.name}</div>
         <div>+ Patient Group: {patient.patientGroup}</div>
         <div>+ Address: {patient.address}</div>

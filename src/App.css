@@ -1,6 +1,6 @@
 .App{
   background: dimgray;
-  height: 100vh;
+  height: 100%;
 }
 
 @media (prefers-reduced-motion: no-preference) {

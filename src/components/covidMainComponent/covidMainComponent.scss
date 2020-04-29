@@ -1,3 +1,15 @@
-.covidMainComponent{
+.covidMainComponent {
   display: flex;
+}
+.covidMainComponent__map{
+  width: 67%;
+}
+.covidMainComponent__slider{
+  background-color: #ff6868;
+  margin: 0 10px;
+  text-align: center;
+}
+.covidMainComponent__slider--title{
+  margin-bottom: 30px;
+  color: white;
 }

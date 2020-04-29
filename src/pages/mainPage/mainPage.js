@@ -5,7 +5,7 @@ import './mainPage.scss';
 class mainPage extends Component {
   render() {
     return (
-      <div>
+      <div className="mainPage">
         <div className="page__title">Covid Patient Map</div>
         <CovidMainComponent />
       </div>

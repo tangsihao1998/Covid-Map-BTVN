@@ -1,4 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
+import { List, ListItem, ListItemText } from '@material-ui/core';
+
 import './listViewPatientInfo.scss';
 
 // Redux
@@ -9,6 +12,7 @@ import selectors from './../../redux/selectors';
 // Components
 import PatientInfo from './../patientInfo/patientInfo';
 
+const scrollableListRef = React.createRef();
 class listViewPatientInfo extends Component {
 
   constructor(props) {
@@ -32,6 +36,7 @@ class listViewPatientInfo extends Component {
   }
 
   setCurrentPatient = (patient) => {
+    console.log(scrollableListRef)
     this.props.setCurrentPatient(patient);
   }
 
@@ -41,17 +46,21 @@ class listViewPatientInfo extends Component {
    
     patientArray.map((patient, index) => 
       {
-        let setBold = false;
-        if(currentPatient){
-          if(currentPatient.name === patient.name) {
-            setBold = true;
-          }
-        }
-        
         render.push(
-          <div key={index} className="Patient__eachPatient" onClick={() => this.setCurrentPatient(patient)}>
-            <PatientInfo patient={patient} setBold = {setBold}/>
-          </div>
+          <List children={currentPatient.name}>
+            <ListItem
+            className="Patient__eachPatient"
+            classes={{ root: 'root', selected: 'selected'}}
+            alignItems = 'center'
+            selected={patient.name === currentPatient.name}
+            onClick={() => this.setCurrentPatient(patient)}
+            children={currentPatient.name}
+            autoFocus={true}
+            key={index}
+            >
+              <ListItemText primary={patient.name} />
+            </ListItem>
+          </List>
         )
       }
     )
@@ -59,7 +68,7 @@ class listViewPatientInfo extends Component {
   }
 
   render() {
-    const {patientInfo} = this.props;
+    const {patientInfo, currentPatient} = this.props;
     const patientArray = Object.values(patientInfo);
 
     return (
@@ -69,6 +78,9 @@ class listViewPatientInfo extends Component {
           <div className="Patient__listView">
             {this.renderPatient(patientArray)}
           </div>
+          <div className="Patient__info--current">
+            <PatientInfo patient={currentPatient} />
+          </div>
         </div>
       </React.Fragment>
     )
@@ -76,7 +88,7 @@ class listViewPatientInfo extends Component {
 }
 
 const mapStateToProps = state => ({
-  patientInfo: selectors.getDataPatient(state),
+  patientInfo: selectors.getCurrentPatientData(state),
   currentPatient: selectors.getCurrentPatient(state),
 });
 

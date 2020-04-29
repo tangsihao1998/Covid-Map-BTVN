@@ -25,6 +25,7 @@ class covidMap extends PureComponent {
     }
     return renderMarker;
   }
+
   render() {
     const {currentPatient} = this.props;
     let position = '';
@@ -46,7 +47,7 @@ class covidMap extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  patientData: selectors.getDataPatient(state),
+  patientData: selectors.getCurrentPatientData(state),
   currentPatient: selectors.getCurrentPatient(state),
 });
 

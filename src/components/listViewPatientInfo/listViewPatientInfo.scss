@@ -1,24 +1,45 @@
-.Patient__info{
+.Patient__info {
   width: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-left: 10px;
 }
-.Patient__listView{
+.Patient__listView {
   font-weight: 400;
   font-size: 14px;
-  height:600px;
-  overflow:hidden; 
-  overflow-y:scroll;
-  background-color: rgb(241, 124, 111);
+  height: 375px;
+  overflow: hidden;
+  overflow-y: scroll;
+  background-color: #f57566;
 }
-.Patient__eachPatient{
+.Patient__eachPatient {
   margin: 5px 5px;
   background-color: rgb(255, 224, 221);
 }
-
 .Patient__sort{
   margin: 10px;
   width: 60%;
+}
+.Patient__info--current {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px;
+  margin: 10px 0;
+
+  font-weight: 400;
+  font-size: 14px;
+
+  background-color: #ffe0dd;
+  border: 5px solid #f17c6f;
+}
+.selected{
+  background-color: rgb(255, 244, 164);
+  font-weight: 500;
+}
+.root {
+  padding-top: 0px; 
+  padding-bottom: 0px; 
 }

@@ -26,9 +26,7 @@ const CustomSlider = withStyles({
 class covidMainComponent extends Component {
   constructor(props){
     super(props);
-    this.state={
-      play_pause: false,
-    };
+    this.state={};
   }
 
   componentDidMount () {
@@ -49,7 +47,7 @@ class covidMainComponent extends Component {
   }
 
   onSwitchHandleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.checked });
+    this.props.setSwitchCheck(event.target.checked);
   }
 
   render() {
@@ -62,7 +60,7 @@ class covidMainComponent extends Component {
             <div className="covidMainComponent__slider--title">
               Verify Date
               <Switch
-                checked={this.state.play_pause}
+                checked={this.props.switchCheck}
                 onChange={this.onSwitchHandleChange}
                 color="primary"
                 name="play_pause"
@@ -90,6 +88,7 @@ const mapStateToProps = state => ({
   dateDefault: selectors.getDateDefault(state),
   dateSelect: selectors.getDateSelect(state),
   patientData: selectors.getDataPatient(state),
+  switchCheck: selectors.getSwitchCheck(state),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -97,6 +96,7 @@ const mapDispatchToProps = dispatch => ({
   callApiCovid: () => dispatch(actions.callApiCovid()),
   getDateSelect: (dateSelect) => dispatch(actions.getDateSelect(dateSelect)),
   getCurrentPatientData: (patientData) => dispatch(actions.getCurrentPatientData(patientData)),
+  setSwitchCheck: (switchCheck) => dispatch(actions.setSwitchCheck(switchCheck)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(covidMainComponent);

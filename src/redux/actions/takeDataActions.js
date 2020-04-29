@@ -2,7 +2,7 @@ import axios from 'axios';
 import selectors from './../selectors';
 
 export const callApiCovid = () => dispatch => {
-  axios.get('/list',)
+  axios.get('https://cors-anywhere.herokuapp.com/https://maps.vnpost.vn/apps/covid19/api/patientapi/list',)
   .then( res => {
     const patientData = res.data.data;
     dispatch({ type: 'CALL_API_COVID_TAKE_ALL_PATIENT', payload: { patientData } });
@@ -56,3 +56,19 @@ export const sortPatientByDate = (patientArray, sort) => dispatch => {
 export const getDateSelect = (dateSelect) => dispatch => {
   dispatch({ type: 'GET_SELECT_DATE', payload: { dateSelect } });
 }
+
+export const setSwitchCheck = (switchCheck) => (dispatch, getState) => {
+  const dateSelect = selectors.getDateSelect(getState());
+  const timeNow = selectors.getTimeNow(getState());
+  if(switchCheck) {
+    let newdate = dateSelect.getTime();
+    
+    while( newdate < (timeNow.getTime() - 86400000)){
+      newdate = newdate + 86400000;
+      let date = new Date(newdate);
+      getDateSelect(date);
+    }
+  }
+  dispatch({ type: 'SET_SWITCH_CHECK', payload: { switchCheck } });
+}
+

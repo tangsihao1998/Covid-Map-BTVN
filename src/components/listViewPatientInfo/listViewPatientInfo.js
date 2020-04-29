@@ -68,9 +68,15 @@ class listViewPatientInfo extends Component {
   }
 
   render() {
-    const {patientInfo, currentPatient} = this.props;
-    const patientArray = Object.values(patientInfo);
-
+    const {patientInfo, currentPatient, patientInfoCurrent} = this.props;
+    let patientArray;
+    if(!patientInfoCurrent){
+      patientArray = Object.values(patientInfo);
+    }
+    else {
+      patientArray = Object.values(patientInfoCurrent);
+    }
+    
     return (
       <React.Fragment>
         <div className="Patient__info">
@@ -88,8 +94,9 @@ class listViewPatientInfo extends Component {
 }
 
 const mapStateToProps = state => ({
-  patientInfo: selectors.getCurrentPatientData(state),
+  patientInfoCurrent: selectors.getCurrentPatientData(state),
   currentPatient: selectors.getCurrentPatient(state),
+  patientInfo: selectors.getDataPatient(state),
 });
 
 const mapDispatchToProps = dispatch => ({

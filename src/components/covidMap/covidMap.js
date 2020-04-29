@@ -17,8 +17,14 @@ class covidMap extends PureComponent {
   }
 
   renderPatientMarker = () => {
-    const {patientData} = this.props;
-    const patientArray = Object.values(patientData);
+    const {patientData, patientDataCurrent} = this.props;
+    let patientArray;
+    if(!patientDataCurrent) {
+      patientArray = Object.values(patientData);
+    }
+    else {
+      patientArray = Object.values(patientDataCurrent);
+    }
     const renderMarker = new Array ();
     for(let i = 0; i < patientArray.length; ++i) {
       renderMarker.push(<PatientMarker key={i} patient={patientArray[i]} />);
@@ -32,6 +38,7 @@ class covidMap extends PureComponent {
     if(currentPatient){
       position = [currentPatient.lat,currentPatient.lng];
     }
+
     return (
       <React.Fragment>
         <Map center={(position || [10.762887, 106.6800684])} zoom={13}>
@@ -47,8 +54,9 @@ class covidMap extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  patientData: selectors.getCurrentPatientData(state),
+  patientDataCurrent: selectors.getCurrentPatientData(state),
   currentPatient: selectors.getCurrentPatient(state),
+  patientData: selectors.getDataPatient(state),
 });
 
 const mapDispatchToProps = dispatch => ({

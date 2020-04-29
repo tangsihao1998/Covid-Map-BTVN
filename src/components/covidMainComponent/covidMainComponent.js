@@ -34,12 +34,13 @@ class covidMainComponent extends Component {
   componentDidMount () {
     const { callApiCovid } = this.props;
     callApiCovid();
-    
   }
 
   onSliderHandleChange = (event, newValue) => {
+    const {patientData, getCurrentPatientData, getDateSelect} = this.props;
     let date = new Date(newValue);
-    this.props.getDateSelect(date);
+    getDateSelect(date);
+    getCurrentPatientData(patientData);
   }
   
   formatDate = (value) => {
@@ -52,8 +53,6 @@ class covidMainComponent extends Component {
   }
 
   render() {
-    const {patientData, getCurrentPatientData} = this.props;
-    getCurrentPatientData(patientData);
     return (
       <div className="covidMainComponent">
         <ListViewPatientInfo />

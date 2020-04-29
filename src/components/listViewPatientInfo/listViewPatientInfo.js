@@ -36,7 +36,6 @@ class listViewPatientInfo extends Component {
   }
 
   setCurrentPatient = (patient) => {
-    console.log(scrollableListRef)
     this.props.setCurrentPatient(patient);
   }
 

@@ -1,0 +1,25 @@
+.SwitchMapStat {
+  display: flex;
+}
+.linktag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 30px;
+  width: 50%;
+
+  background: white;
+  color: black;
+ 
+  margin: 10px;
+
+  border: 2px solid black;
+  border-radius: 10px;
+
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: unset;
+  
+  box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+}

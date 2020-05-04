@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './SwitchMapStat.scss';
+import './switchMapStat.scss';
 
 import {Link} from 'react-router-dom';
 

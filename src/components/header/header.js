@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SwitchMapStat from './../../components/SwitchMapStat/SwitchMapStat';
+import SwitchMapStat from '../switchMapStat/switchMapStat';
 import './header.scss';
 
 class header extends Component {

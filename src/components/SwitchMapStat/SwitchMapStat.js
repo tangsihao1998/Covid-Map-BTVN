@@ -8,7 +8,7 @@ class SwitchMapStat extends Component {
     return (
       <div className="SwitchMapStat">
         <Link to="/map" className="linktag"><div>Map</div></Link>
-        <Link to="/stat" className="linktag"><div>Stat</div></Link>
+        <Link to="/stats" className="linktag"><div>Stat</div></Link>
       </div>
     )
   }

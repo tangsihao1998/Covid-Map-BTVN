@@ -32,7 +32,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={HomePage} />
             <Route exact path='/map' component={MapPage} />
-            <Route exact path='/stat' component={ChartPage} />
+            <Route exact path='/stats' component={ChartPage} />
           </Switch>
         </Scroll>
       </div>

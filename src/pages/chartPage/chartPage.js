@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import CovidStat from './../../components/covidStat/covidStat';
+import CovidStat from '../../components/covidStatComponent/covidStatComponent';
 import './chartPage.scss';
 
 class chartPage extends Component {

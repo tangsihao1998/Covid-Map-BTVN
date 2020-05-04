@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './switchMapStat.scss';
+import './SwitchMapStat.scss';
 
-import {Link} from 'react-router-dom';
+import {Link} from '=react-router-dom';
 
 class SwitchMapStat extends Component {
   render() {

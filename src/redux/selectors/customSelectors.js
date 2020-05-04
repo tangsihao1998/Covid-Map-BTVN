@@ -4,4 +4,3 @@ export const getTimeNow = state => state.infoMap.timeNow;
 export const getDateDefault = state => state.infoMap.dateDefault;
 export const getDateSelect = state => state.infoMap.dateSelect;
 export const getCurrentPatientData = state => state.infoMap.currentPatientData;
-export const getSwitchCheck = state => state.infoMap.switchCheck;

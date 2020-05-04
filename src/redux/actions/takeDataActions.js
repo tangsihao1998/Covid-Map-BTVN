@@ -20,7 +20,7 @@ export const getCurrentPatientData = (PatientData) => (dispatch, getState) => {
   patientArray.map((patient, index) => 
     {
       const verifyDate = Date.parse(patient.verifyDate);
-      if(dataSelect.getTime() <= verifyDate && verifyDate <= timeNow.getTime()) {
+      if(dataSelect.getTime() >= verifyDate) {
         currentPatientData.push(patient);
       }
     }
@@ -30,7 +30,7 @@ export const getCurrentPatientData = (PatientData) => (dispatch, getState) => {
 
 export const setCurrentPatient = (patient) => dispatch => {
   dispatch({ type: 'TAKE_CURRENT_PATIENT', payload: { patient } });
-}
+};
 
 export const sortPatientByDate = (patientArray, sort) => dispatch => {
   let newPatientData = '';
@@ -51,24 +51,8 @@ export const sortPatientByDate = (patientArray, sort) => dispatch => {
     });
   }
   dispatch({ type: 'SORT_PATIENT_BY_DATE', payload: { newPatientData } });
-}
+};
 
 export const getDateSelect = (dateSelect) => dispatch => {
   dispatch({ type: 'GET_SELECT_DATE', payload: { dateSelect } });
-}
-
-export const setSwitchCheck = (switchCheck) => (dispatch, getState) => {
-  const dateSelect = selectors.getDateSelect(getState());
-  const timeNow = selectors.getTimeNow(getState());
-  if(switchCheck) {
-    let newdate = dateSelect.getTime();
-    
-    while( newdate < (timeNow.getTime() - 86400000)){
-      newdate = newdate + 86400000;
-      let date = new Date(newdate);
-      getDateSelect(date);
-    }
-  }
-  dispatch({ type: 'SET_SWITCH_CHECK', payload: { switchCheck } });
-}
-
+};

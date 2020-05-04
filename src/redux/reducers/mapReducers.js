@@ -34,11 +34,6 @@ export default initialState => (state = initialState, action) => {
         ...state,
         dateSelect: payload.dateSelect,
       }
-    case 'SET_SWITCH_CHECK':
-      return {
-        ...state,
-        switchCheck: payload.switchCheck,
-      }
     default:
       return state;
   }

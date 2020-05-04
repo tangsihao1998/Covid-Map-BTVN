@@ -10,6 +10,7 @@ import selectors from './../../redux/selectors';
 import CovidMap from './../covidMap/covidMap';
 import ListViewPatientInfo from './../listViewPatientInfo/listViewPatientInfo';
 import CustomSlider from './../customSlider/customSlider';
+import SwitchPlayPause from './../switchPlayPause/switchPlayPause';
 
 class covidMainComponent extends Component {
   constructor(props){
@@ -21,10 +22,6 @@ class covidMainComponent extends Component {
     const { callApiCovid } = this.props;
     callApiCovid();
   }
-  
-  onSwitchHandleChange = (event) => {
-    this.props.setSwitchCheck(event.target.checked);
-  }
 
   render() {
     return (
@@ -35,12 +32,7 @@ class covidMainComponent extends Component {
           <div className="covidMainComponent__slider">
             <div className="covidMainComponent__slider--title">
               Verify Date
-              {/* <Switch
-                checked={this.props.switchCheck}
-                onChange={this.onSwitchHandleChange}
-                color="primary"
-                name="play_pause"
-              /> */}
+              <SwitchPlayPause />
             </div>
             <CustomSlider />
           </div>
@@ -52,13 +44,11 @@ class covidMainComponent extends Component {
 
 const mapStateToProps = state => ({
   patientData: selectors.getDataPatient(state),
-  switchCheck: selectors.getSwitchCheck(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
   callApiCovid: () => dispatch(actions.callApiCovid()),
-  setSwitchCheck: (switchCheck) => dispatch(actions.setSwitchCheck(switchCheck)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(covidMainComponent);

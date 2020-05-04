@@ -1,11 +1,10 @@
 export default {
   infoMap: {
     patientData: [],
-    currentPatientData: '',
+    currentPatientData: [],
     currentPatient: '',
     timeNow: new Date(),
     dateDefault: new Date('2019-12-8'),
     dateSelect: new Date('2019-12-8'),
-    switchCheck: false,
   },
 };

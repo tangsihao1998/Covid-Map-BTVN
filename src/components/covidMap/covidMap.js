@@ -26,9 +26,9 @@ class covidMap extends PureComponent {
       patientArray = Object.values(patientDataCurrent);
     }
     const renderMarker = new Array ();
-    for(let i = 0; i < patientArray.length; ++i) {
-      renderMarker.push(<PatientMarker key={i} patient={patientArray[i]} />);
-    }
+    patientArray.map((patient, index) => {
+      renderMarker.push(<PatientMarker key={index} patient={patient} />);
+    })
     return renderMarker;
   }
 
@@ -38,7 +38,6 @@ class covidMap extends PureComponent {
     if(currentPatient){
       position = [currentPatient.lat,currentPatient.lng];
     }
-
     return (
       <React.Fragment>
         <Map center={(position || [10.762887, 106.6800684])} zoom={13}>

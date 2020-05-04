@@ -9,19 +9,7 @@ import selectors from './../../redux/selectors';
 // Components
 import CovidMap from './../covidMap/covidMap';
 import ListViewPatientInfo from './../listViewPatientInfo/listViewPatientInfo';
-import { Slider, Switch } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-
-const CustomSlider = withStyles({
-  root:{
-    color: '#ffc368',
-    width: '70%',
-    height: '4px',
-  },
-  valueLabel:{
-    transform: 'none',
-  }
-})(Slider);
+import CustomSlider from './../customSlider/customSlider';
 
 class covidMainComponent extends Component {
   constructor(props){
@@ -33,19 +21,7 @@ class covidMainComponent extends Component {
     const { callApiCovid } = this.props;
     callApiCovid();
   }
-
-  onSliderHandleChange = (event, newValue) => {
-    const {patientData, getCurrentPatientData, getDateSelect} = this.props;
-    let date = new Date(newValue);
-    getDateSelect(date);
-    getCurrentPatientData(patientData);
-  }
   
-  formatDate = (value) => {
-    let date = new Date(value);
-    return `${date.toLocaleDateString()}`;
-  }
-
   onSwitchHandleChange = (event) => {
     this.props.setSwitchCheck(event.target.checked);
   }
@@ -59,23 +35,14 @@ class covidMainComponent extends Component {
           <div className="covidMainComponent__slider">
             <div className="covidMainComponent__slider--title">
               Verify Date
-              <Switch
+              {/* <Switch
                 checked={this.props.switchCheck}
                 onChange={this.onSwitchHandleChange}
                 color="primary"
                 name="play_pause"
-              />
+              /> */}
             </div>
-            <CustomSlider
-              value={this.props.dateSelect.getTime()}
-              min={this.props.dateDefault.getTime()}
-              max={this.props.timeNow.getTime()}
-              step={86400000}
-              onChange={this.onSliderHandleChange}
-              valueLabelDisplay="auto"
-              aria-labelledby="range-slider"
-              valueLabelFormat={this.formatDate}
-            />
+            <CustomSlider />
           </div>
         </div>
       </div>
@@ -84,9 +51,6 @@ class covidMainComponent extends Component {
 }
 
 const mapStateToProps = state => ({
-  timeNow: selectors.getTimeNow(state),
-  dateDefault: selectors.getDateDefault(state),
-  dateSelect: selectors.getDateSelect(state),
   patientData: selectors.getDataPatient(state),
   switchCheck: selectors.getSwitchCheck(state),
 });
@@ -94,8 +58,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   dispatch,
   callApiCovid: () => dispatch(actions.callApiCovid()),
-  getDateSelect: (dateSelect) => dispatch(actions.getDateSelect(dateSelect)),
-  getCurrentPatientData: (patientData) => dispatch(actions.getCurrentPatientData(patientData)),
   setSwitchCheck: (switchCheck) => dispatch(actions.setSwitchCheck(switchCheck)),
 });
 

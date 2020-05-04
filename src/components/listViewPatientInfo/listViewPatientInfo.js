@@ -75,7 +75,6 @@ class listViewPatientInfo extends Component {
     else {
       patientArray = Object.values(patientInfoCurrent);
     }
-    
     return (
       <React.Fragment>
         <div className="Patient__info">
